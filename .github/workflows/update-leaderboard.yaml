@@ -1,0 +1,29 @@
+name: Update Leaderboard
+
+on:
+  push:
+    paths:
+      - 'events/**/*.json'
+
+jobs:
+  update-leaderboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout leaderboard repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Generate leaderboard.json
+        run: python3 scripts/aggregate-leaderboard.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "leaderboard-bot"
+          git config user.email "leaderboard@veracode.com"
+          git add leaderboard.json
+          git commit -m "Update leaderboard" || true
+          git push
