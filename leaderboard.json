@@ -1,12 +1,14 @@
 {
-  "generated_at": "2026-07-04T21:17:00Z",
+  "generated_at": "2026-07-04T22:24:48Z",
   "leaderboard": [
     {
       "participant_alias": "dashing-keeper",
-      "repo": "verademo-java",
-      "score": 1,
-      "time": "2026-07-04T21:16:53.460Z",
-      "_file": "2026-07-04T21:16:53.460Z-dashing-keeper.json",
+      "total_score": 15,
+      "latest_time": "2026-07-04T22:19:22.152890085Z",
+      "repos": [
+        "verademo-javascript-api",
+        "verademo-java"
+      ],
       "rank": 1
     }
   ]

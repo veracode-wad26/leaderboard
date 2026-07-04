@@ -47,14 +47,39 @@ def aggregate_leaderboard():
             try:
                 with open(event_file, 'r') as f:
                     event = json.load(f)
-                    # Add filename for reference
-                    event['_file'] = event_file.name
                     all_events.append(event)
             except Exception as e:
                 print(f"⚠️  Error reading {event_file}: {e}")
 
-    # Sort by score (descending), then by time (ascending - earliest first for same score)
-    all_events.sort(key=lambda x: (-x['score'], x['time']))
+    # Group by participant + repo, keep latest event for each combo
+    latest_per_repo = {}
+    for event in all_events:
+        key = (event['participant_alias'], event['repo'])
+        if key not in latest_per_repo or event['time'] > latest_per_repo[key]['time']:
+            latest_per_repo[key] = event
+
+    # Now aggregate by participant, summing scores from latest events per repo
+    participants = {}
+    for event in latest_per_repo.values():
+        alias = event['participant_alias']
+        if alias not in participants:
+            participants[alias] = {
+                'participant_alias': alias,
+                'total_score': 0,
+                'latest_time': event['time'],
+                'repos': []
+            }
+
+        participants[alias]['total_score'] += event['score']
+        participants[alias]['repos'].append(event['repo'])
+
+        # Keep the latest timestamp
+        if event['time'] > participants[alias]['latest_time']:
+            participants[alias]['latest_time'] = event['time']
+
+    # Convert to list and sort by total score (descending), then by latest time (ascending)
+    all_events = list(participants.values())
+    all_events.sort(key=lambda x: (-x['total_score'], x['latest_time']))
 
     # Add rank
     for rank, event in enumerate(all_events, 1):
@@ -76,7 +101,8 @@ def aggregate_leaderboard():
     if all_events:
         print("\n🏆 Top 10:")
         for event in all_events[:10]:
-            print(f"  {event['rank']:2d}. {event['participant_alias']:20s} ({event['repo']:25s}) - {event['score']} fixed")
+            repos = ', '.join(event['repos'])
+            print(f"  {event['rank']:2d}. {event['participant_alias']:20s} - {event['total_score']} fixed ({repos})")
 
 
 if __name__ == '__main__':
