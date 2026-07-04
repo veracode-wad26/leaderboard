@@ -5,6 +5,9 @@ on:
     paths:
       - 'events/**/*.json'
 
+permissions:
+  contents: write
+
 jobs:
   update-leaderboard:
     runs-on: ubuntu-latest
