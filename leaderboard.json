@@ -1,13 +1,14 @@
 {
-  "generated_at": "2026-07-05T15:37:19Z",
+  "generated_at": "2026-07-05T15:43:31Z",
   "leaderboard": [
     {
       "participant_alias": "dashing-keeper",
-      "total_score": 94,
-      "latest_time": "2026-07-05T15:37:09.355512654Z",
+      "total_score": 190,
+      "latest_time": "2026-07-05T15:43:23.496830176Z",
       "repos": [
         "verademo-javascript-api",
-        "verademo-java"
+        "verademo-java",
+        "verademo-python"
       ],
       "rank": 1
     }
