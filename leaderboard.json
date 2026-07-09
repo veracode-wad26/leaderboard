@@ -1,15 +1,6 @@
 {
-  "generated_at": "2026-07-09T09:50:33Z",
+  "generated_at": "2026-07-09T09:53:42Z",
   "leaderboard": [
-    {
-      "participant_alias": "sharp-fortress",
-      "total_score": 55,
-      "latest_time": "2026-07-09T09:40:27.675752979Z",
-      "repos": [
-        "verademo-javascript-api"
-      ],
-      "rank": 1
-    },
     {
       "participant_alias": "vigilant-keeper",
       "total_score": 55,
@@ -17,12 +8,21 @@
       "repos": [
         "verademo-javascript-api"
       ],
-      "rank": 2
+      "rank": 1
     },
     {
       "participant_alias": "fierce-knight",
       "total_score": 55,
       "latest_time": "2026-07-09T09:49:56.195710471Z",
+      "repos": [
+        "verademo-javascript-api"
+      ],
+      "rank": 2
+    },
+    {
+      "participant_alias": "sharp-fortress",
+      "total_score": 55,
+      "latest_time": "2026-07-09T09:53:31.543933426Z",
       "repos": [
         "verademo-javascript-api"
       ],
